@@ -1,0 +1,10 @@
+name = "spark_utilities"
+description = "Spark Utilities for Ada Languaje"
+version = "0.1.0-dev"
+
+authors = ["Private"]
+maintainers = ["Private <tumdespt@protonmail.com>"]
+maintainers-logins = ["EliAvila1"]
+licenses = "MIT OR Apache-2.0 WITH LLVM-exception"
+website = "https://github.com/EliAvila1"
+tags = ["spark", "bcrypt", "windows", "security", "utilities"]
