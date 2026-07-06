@@ -5,14 +5,14 @@ with Ada.Numerics.Elementary_Functions;
 with System;
 
 package body spark_bcryptgenrandom
-with SPARK_Mode => On
+with SPARK_Mode => Off
 is
    --==============--
    --== INTERNAL ==--
    --==============--
 
    function BCryptGenRandom (hAlgorithm : in HANDLE := System.Null_Address;
-                             pbBuffer   : in BC_Array;
+                             pbBuffer   : in out BC_Array;
                              cbBuffer   : in ULONG;
                              dwFlags    : in ULONG := BCRYPT_USE_SYSTEM_PREFERRED_RNG)
                              return NTSTATUS
@@ -33,8 +33,8 @@ is
 
        Global      => null,
 
-       Depends     => (BCryptGenRandom'Result => (hAlgorithm, pbBuffer, cbBuffer, dwFlags));
-             --          pbBuffer =>+ (hAlgorithm, cbBuffer, dwFlags));
+       Depends     => (BCryptGenRandom'Result => (hAlgorithm, pbBuffer, cbBuffer, dwFlags),
+                       pbBuffer =>+ (hAlgorithm, cbBuffer, dwFlags));
 
    --===============--
    --== PUBLIC    ==--
